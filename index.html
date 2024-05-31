@@ -45,20 +45,22 @@
             <!-- Paper name -->
 
             <h1 class="title is-1 publication-title">VidClothEditor</h1>
-            <h1 class="title is-2 publication-title">Efficient and Robust Video Virtual Try-On Framework via Enhanced Multi-garment Alignment</h1>
+            <h1 class="title is-3 publication-title">Efficient and Robust Video Virtual Try-On Framework via Enhanced Multi-garment Alignment</h1>
             
             <!-- Paper authors -->
             
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="" target="_blank">Zijian He</a>,</span>
+                Zijian He</a>,
+                <!--<a href="" target="_blank">Zijian He</a>,</span>-->
               <span class="author-block">
-                <a href="https://github.com/chen-xinxin" target="_blank">Peixin Chen</a>,</span>
+                Peixin Chen</a>,
+                <!--<a href="https://github.com/chen-xinxin" target="_blank">Peixin Chen</a>,</span>-->
+              <span class="author-block">
+                Guanbin Li</a>,
+              <span class="author-block">
+                Liang Lin</a>,
               <!-- <span class="author-block">
-                <a href="" target="_blank">Author 3</a>,</span>
-              <span class="author-block">
-                <a href="" target="_blank">Author 4</a>,</span>
-              <span class="author-block">
                 <a href="" target="_blank">Author 5</a>,</span>
               <span class="author-block">
                 <a href="" target="_blank">Author 6</a>
@@ -158,12 +160,12 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Framework</h2>
+      <h2 class="title is-3">Overall Framework of VidClothEditor</h2>
       <div class="item">
         <!-- Your image here -->
         <img src="static/images/pipeline.png"/>
         <p>
-          <strong>Overview of our VidClothEditor framework.</strong> First, we preprocess the reference video and the target upper garment by performing segmentation and pose detection. This process obtains a clothing-agnostic sequence and a pose sequence. Notice that we make full-body masking and we obtain the lower image from the first frame. Next, the target upper garment and the extracted lower garment are inputted into the GarmentNet to extract hierarchical features. Finally, the UNet incorporate aligned garments features and the conditional sequence into the denosing progress to produce video try-on results.
+          <strong>Overview of our VidClothEditor framework.</strong> First, we preprocess the reference video and the target upper garment through segmentation and pose detection. This process obtains a clothing-agnostic sequence and a pose sequence. We apply full-body masking and obtain the lower garment image from the first frame. Next, the target upper garment and the extracted lower garment are inputted into the GarmentNet to extract hierarchical features. Finally, the UNet incorporate aligned garments features and the conditional sequence into the denosing progress to produce vivid video try-on results.
         </p>
      </div>
     </div>
@@ -173,6 +175,26 @@
 </section>
 <!-- End Pipeline -->
 
+<!-- Faiulre case -->
+<section class="hero is-small">
+  <div class="hero-body" style=" padding-top: 30px;">
+    <div class="container">
+        <div class="item tiktok-video">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/failure.mp4"
+            type="video/mp4">
+          </video>
+          <p>
+            &emsp;&emsp;&emsp;&emsp;&emsp;Full-body inpainting strategy with region guidance, ensuring consistency in video virtual try-on.
+          </p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- End Faiulre case -->
+
+
 <!-- one-stage image try-on network -->
 <section class="hero is-small">
   <div class="hero-body">
@@ -180,9 +202,9 @@
       <h2 class="title is-3">Region-guidance Multiple Garment Fusion</h2>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/attn.png"/>
+        <img src="static/images/attn.png" width="600" style="display: block; margin: auto;"/>
         <p>
-          <strong>Overview of the proposed distillation progress.</strong> We apply the garment augmented ODE solver to emphasize the garment details.
+          <strong>Overview of the region-guidance multiple garment fusion.</strong> We use (a) spatial attention to integrate garment features into the denoising UNet. To prevent feature interference, we employ (b) region guidance to properly align the attention maps.
         </p>
        </div>
     </div>
@@ -195,12 +217,12 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Distillation Progress</h2>
+      <h2 class="title is-3">Garment-augmented Video Consistency learning</h2>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/one_stage.png"/>
+        <img src="static/images/distillation.png"/>
         <p>
-          <strong>Overview of the proposed distillation progress.</strong> We apply the garment augmented ODE solver to emphasize the garment details.
+          <strong>Overview of the video consistency learning.</strong> Given a source video \(z_0\) in the latent space, we perform a forward SDE to add noise on it, resulting in \(z_{t_{n+1}}\). \(z_{t_n}\) is the one-step estimation from \(z_{t_{n+1}}\), which is obtained by the garment-augmented PF-ODE solver. \(z_{t_{n+1}}\) and \(z_{t_n}\) should be enforced to satisfy the self-consistency property.
         </p>
        </div>
     </div>
@@ -327,7 +349,7 @@
 <!-- End Virtual try-on results on real-life TikTok videos -->
 
 
-<!-- Cross-dataset video try-on results -->
+<!-- full body video try-on results -->
 <section class="hero is-small is-light">
   <div class="hero-body" style=" padding-top: 30px;">
     <div class="container">
@@ -363,32 +385,32 @@
     </div>
   </div>
 </section>
-<!-- End Cross-dataset video try-on results -->
+<!-- End full body video try-on results -->
 
 
-<!-- Qualitative comparison on the VVT dataset -->
-<!-- <section class="hero is-small is-light">
+<!-- ablation distill -->
+<section class="hero is-small is-light">
   <div class="hero-body" style=" padding-top: 30px;">
     <div class="container">
-      <h2 class="title is-3">Qualitative Comparison on the VVT Dtaset</h2>
-        <div class="item item-video1">
+      <h2 class="title is-3">Ablation study of Consistency Distillation</h2>
+        <div class="item item-video0">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <source src="static/videos/output_0.mp4"
+            <!-- Your video file here -->
+            <source src="static/videos/dd_00130_00128.mp4"
             type="video/mp4">
           </video>
         </div>
-        <div class="item item-video2">
+        <div class="item item-video0">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <source src="static/videos/output_1.mp4"
+            <!-- Your video file here -->
+            <source src="static/videos/dd_00117_00057.mp4"
             type="video/mp4">
           </video>
         </div>
-      </div>
     </div>
   </div>
-</section> -->
-<!-- End Qualitative comparison on the VVT dataset -->
-
+</section>
+<!-- ablation distill -->
 
 <!-- Qualitative comparison on VITON-HD dataset -->
 <section class="hero is-small is-light">
