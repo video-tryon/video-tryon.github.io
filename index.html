@@ -148,7 +148,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Video virtual try-on aims to generate realistic sequences where garments maintain their identity and adapt accurately to a person's pose and body shape in source video. Traditional methods primarily rely on human parsing to minimize inpainting region. However, this approach limits the degrees of freedom and does not leverage the capabilities of the foundation model. In complex in-the-wild scenarios, the challenges of accurate segmentation and frame-to-frame inconsistencies in clothing agnostic regions lead to discontinuities in video try-on results. Our solution, VidClothEditor, adopts a relaxed editing approach that allows for full-body inpainting and treats unedited regions as a reconstruction task. It utilizes multiple garment alignment with region guidance to enhance the naturalness of video tryon results. Additionally, we employ garment-augmented video consistency learning, which significantly reduces the inference time and increases the practical potential for video editing. Our experiments on the VITON-HD and TikTok datasets confirm VidClothEditor’s ability to generate high-quality images and smooth videos.
+             Video virtual try-on aims to generate realistic sequences where garments maintain their identity and adapt accurately to a person's pose and body shape in source video. This task can be regarded as one of inpainting, where previous methods focus primarily on the specific try-on region while simply ``copying" the remaining parts of the person. However, this approach limits the degrees of freedom and heavily relies on precise human parsing. In complex in-the-wild scenarios, dynamic blurring and limb occlusions can introduce errors and discontinuities in the inpainting region, adversely affecting the video try-on results. Our solution, VidClothEditor, adopts a relaxed editing approach that allows for full-body inpainting and treats non-edited regions as a reconstruction task. It utilizes multiple garment alignment with a proposed region guidance to enhance the naturalness of video try-on results. Additionally, we employ garment-augmented video consistency learning, which significantly reduces the inference time and increases the practical potential for video editing. Comprehensive experiments on the VITON-HD and TikTok datasets confirm VidClothEditor's ability to generate high-quality images and smooth videos.
           </p>
         </div>
       </div>
@@ -186,7 +186,7 @@
         <div class="item tiktok-video">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/videos/failure.mp4"
+            <source src="static/videos/failure2.mp4"
             type="video/mp4">
           </video>
           <p>
@@ -224,7 +224,7 @@
       <h2 class="title is-3">Garment-augmented Video Consistency learning</h2>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/distillation.png"/>
+        <img src="static/images/distillation.png" width="800" style="display: block; margin: auto;"/>
         <p>
           <strong>Overview of the video consistency learning.</strong> Given a source video \(z_0\) in the latent space, we perform a forward SDE to add noise on it, resulting in \(z_{t_{n+1}}\). \(z_{t_n}\) is the one-step estimation from \(z_{t_{n+1}}\), which is obtained by the garment-augmented PF-ODE solver. \(z_{t_{n+1}}\) and \(z_{t_n}\) should be enforced to satisfy the self-consistency property.
         </p>
@@ -238,34 +238,6 @@
 
 <!-- mathjax -->
 <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
-<!-- Qualitative comparison on the TikTok dataset -->
-<section class="hero is-small is-light">
-  <div class="hero-body" style=" padding-top: 30px;">
-    <div class="container">
-      <h2 class="title is-3">Qualitative Comparison on the TikTok Dataset</h2>
-      <!-- <h2 class="title is-4">Qualitative comparison on the TikTok dataset</h2> -->
-      
-        <div class="item tiktok-video">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/compare_00009_00321.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item tiktok-video">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/compare_00312_00265.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-    </div>
-  </div>
-</section>
-<!-- End Qualitative comparison on the TikTok dataset -->
-
 
 <!-- Video Virtual try-on results on real-life TikTok videos -->
 <section class="hero is-small is-light">
@@ -391,6 +363,31 @@
 </section>
 <!-- End full body video try-on results -->
 
+<!-- Qualitative comparison on the TikTok dataset -->
+<section class="hero is-small is-light">
+  <div class="hero-body" style=" padding-top: 30px;">
+    <div class="container">
+      <h2 class="title is-3">Qualitative Comparison on the TikTok Dataset</h2>
+      <!-- <h2 class="title is-4">Qualitative comparison on the TikTok dataset</h2> -->
+      
+        <div class="item tiktok-video">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/compare_00009_00321.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item tiktok-video">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <source src="static/videos/compare_00312_00265.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- End Qualitative comparison on the TikTok dataset -->
 
 <!-- ablation distill -->
 <section class="hero is-small is-light">
